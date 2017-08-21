@@ -1,0 +1,12 @@
+{
+    "require": {
+
+    },
+    "autoload": {
+        "classmap": [
+        	"web",
+            "app/BaseController.php",
+            "app/Models"
+		]
+    }
+}
