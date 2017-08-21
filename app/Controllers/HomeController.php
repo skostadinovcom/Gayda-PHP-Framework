@@ -6,11 +6,34 @@
  * Time: 19:31
  */
 
-class HomeController
+class HomeController extends BaseController
 {
     public function index()
     {
-        echo 'Hello World';
+        $posts = array(
+            array(
+                'title' => 'zaglavie',
+                'content' => 'sydyrjane'
+            ),
+            array(
+                'title' => 'zaglavie',
+                'content' => 'sydyrjane'
+            ),
+            array(
+                'title' => 'zaglavie',
+                'content' => 'sydyrjane'
+            ),
+            array(
+                'title' => 'zaglavie',
+                'content' => 'sydyrjane'
+            ),
+            array(
+                'title' => 'zaglavie',
+                'content' => 'sydyrjane'
+            ),
+        );
+
+        $this->view('home.index', [ 'posts' => $posts, 'haha' => 'test' ]);
     }
 
     public function test()

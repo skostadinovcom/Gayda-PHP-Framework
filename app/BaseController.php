@@ -12,25 +12,50 @@ class BaseController
     /**
      * Load a model
      *
-     * @param string $name The name of the model
+     * @param string $model The name of the model
      *
      * @return object
      */
-    public function model( $name )
+    public function model( $model )
     {
-        require_once APPLICATION_DIR . 'app/Models/' . ucfirst($name) . '.php';
-        return new $name();
+        require_once APPLICATION_DIR . 'app/Models/' . ucfirst($model) . '.php';
+        return new model();
     }
 
     /**
      * Return a view
+     *
+     * @param string $view The path, view name. Split the folders with dots (.) & add .twig after the file name if you want to use twig
+     * Example: articles.show.twig
+     *
+     * @param array $data Send data to view
      */
-    public function view( $viewName, $data )
+    public function view( $view, $data )
     {
+        $view = explode( '.', $view );
 
-        //TODO NAPRAVI CHECK DALI DA RENDIRA TWIG ILI OBIKNOVEN PHP
+        $view_path = null;
+        foreach ( $view as $road ){
+            $view_path = $view_path . '/' . $road;
+        }
+
+        if ( end($view)  == 'twig' ){
+            //TODO: Render the twig views
+        }else{
+
+            foreach ( $data as $var => $content ){
+                ${$var} = $content;
+            }
+
+            include('app/Views/' . $view_path . '.php' );
+        }
     }
 
+    /**
+     * Redirect
+     *
+     * @param string $to Redirect to
+     */
     public function redirect( $to )
     {
         header("Location: $to");

@@ -9,7 +9,6 @@ class Application
     public function __construct()
     {
         $requestParts = $this->explodeRequestParts();
-        $config = $this->getConfigs();
 
         if ( file_exists(APPLICATION_DIR . '/app/Controllers/' . ucfirst($requestParts[0]) . 'Controller.php') ) {
             $this->controller = $requestParts[0];
