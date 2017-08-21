@@ -36,13 +36,16 @@ class BaseController
 
         $view_path = null;
         foreach ( $view as $road ){
-            $view_path = $view_path . '/' . $road;
+            if ( $road != 'twig' ){
+                $view_path = $view_path . '/' . $road;
+            }
         }
 
         if ( end($view)  == 'twig' ){
-            //TODO: Render the twig views
-        }else{
+            $view = new TwigRender( $view_path, $data );
 
+            echo $view;
+        }else{
             foreach ( $data as $var => $content ){
                 ${$var} = $content;
             }

@@ -12,28 +12,16 @@ class HomeController extends BaseController
     {
         $posts = array(
             array(
-                'title' => 'zaglavie',
-                'content' => 'sydyrjane'
+                'title' => 'Post title #1',
+                'content' => 'Post Content #1'
             ),
             array(
-                'title' => 'zaglavie',
-                'content' => 'sydyrjane'
-            ),
-            array(
-                'title' => 'zaglavie',
-                'content' => 'sydyrjane'
-            ),
-            array(
-                'title' => 'zaglavie',
-                'content' => 'sydyrjane'
-            ),
-            array(
-                'title' => 'zaglavie',
-                'content' => 'sydyrjane'
+                'title' => 'Post title #2',
+                'content' => 'Post Content #2'
             ),
         );
 
-        $this->view('home.index', [ 'posts' => $posts, 'haha' => 'test' ]);
+        $this->view('home.index.twig', [ 'posts' => $posts, 'haha' => 'test' ]);
     }
 
     public function test()
