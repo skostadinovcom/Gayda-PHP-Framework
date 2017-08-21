@@ -23,7 +23,7 @@ class HomeController extends BaseController
 
         $this->view('home.index.twig', [ 'posts' => $posts, 'haha' => 'test' ]);
     }
-
+    
     public function test()
     {
         echo 'Test World';
