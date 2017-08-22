@@ -10,20 +10,13 @@ class HomeController extends BaseController
 {
     public function index()
     {
-        $posts = array(
-            array(
-                'title' => 'Post title #1',
-                'content' => 'Post Content #1'
-            ),
-            array(
-                'title' => 'Post title #2',
-                'content' => 'Post Content #2'
-            ),
-        );
+        $model = $this->model('Home');
+
+        $posts = $model->test();
 
         $this->view('home.index.twig', [ 'posts' => $posts, 'haha' => 'test' ]);
     }
-    
+
     public function test()
     {
         echo 'Test World';

@@ -6,9 +6,15 @@ class TwigRender{
     private $data;
     private $twig;
 
-    public function __toString()
+    public function __construct($file, $data)
     {
-        return $this->parseView();
+        $this->file = $file;
+        $this->data = $data;
+
+        $twigLoader = new Twig_Loader_Filesystem(APPLICATION_DIR . '/app/views', '__main__');
+        $this->twig = new Twig_Environment($twigLoader);
+
+        //TODO: Cache & check last modified
     }
 
     public function parseView()
@@ -41,19 +47,13 @@ class TwigRender{
         }
     }
 
+    public function __toString()
+    {
+        return $this->parseView();
+    }
+
     private function getErrorMessage($errorType, $errorMessage)
     {
         return sprintf("A %s error occured: %s", $errorType, $errorMessage);
-    }
-
-    public function __construct($file, $data)
-    {
-        $this->file = $file;
-        $this->data = $data;
-
-        $twigLoader = new Twig_Loader_Filesystem(APPLICATION_DIR . '/app/views', '__main__');
-        $this->twig = new Twig_Environment($twigLoader);
-
-        //TODO: Cache & check last modified
     }
 }

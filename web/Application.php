@@ -1,5 +1,8 @@
 <?php
 
+use Whoops\Run as WhoopsRun;
+use Whoops\Handler\PrettyPageHandler as WhoopsPrettyPageHandler;
+
 class Application
 {
     protected $controller = 'home';
@@ -9,6 +12,12 @@ class Application
     public function __construct()
     {
         $requestParts = $this->explodeRequestParts();
+
+        //Incude Whoops
+        $whoops = new WhoopsRun();
+        $handler = new WhoopsPrettyPageHandler();
+        $whoops->pushHandler($handler)->register();
+        //.Include Whoops
 
         if ( file_exists(APPLICATION_DIR . '/app/Controllers/' . ucfirst($requestParts[0]) . 'Controller.php') ) {
             $this->controller = $requestParts[0];

@@ -18,14 +18,16 @@ class BaseController
      */
     public function model( $model )
     {
-        require_once APPLICATION_DIR . 'app/Models/' . ucfirst($model) . '.php';
-        return new model();
+        $model_name = ucfirst($model);
+        require_once APPLICATION_DIR . '/app/Models/' . $model_name . '.php';
+
+        return new $model_name;
     }
 
     /**
      * Return a view
      *
-     * @param string $view The path, view name. Split the folders with dots (.) & add .twig after the file name if you want to use twig
+     * @param string $view The path & view name. Split the folders with dots (.) & add .twig after the file name if you want to use twig
      * Example: articles.show.twig
      *
      * @param array $data Send data to view
@@ -54,9 +56,8 @@ class BaseController
         }
     }
 
+
     /**
-     * Redirect
-     *
      * @param string $to Redirect to
      */
     public function redirect( $to )
